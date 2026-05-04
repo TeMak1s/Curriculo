@@ -1,123 +1,98 @@
-import React, { useRef } from 'react';
-import { ThemeProvider } from './contexts/ThemeContext';
-import Header from './components/Header';
-import ProfileCard from './components/ProfileCard';
-import Section from './components/Section';
-import AboutMe from './components/AboutMe';
-import Career from './components/Career';
-import Skills from './components/Skills';
-import ExperienceList from './components/ExperienceList';
-import ProjectList from './components/ProjectList';
-import Summary from './components/Summary';
-import Footer from './components/Footer';
-import PdfButton from './components/PdfButton';
-import profilePhoto from './assets/profile.jpg';
+import { motion } from 'framer-motion'
+import About from './components/About'
+import BackgroundMusic from './components/BackgroundMusic'
+import Contact from './components/Contact'
+import Experience from './components/Experience'
+import Hero from './components/Hero'
+import Navbar from './components/Navbar'
+import ParticlesBackground from './components/ParticlesBackground'
+import Projects from './components/Projects'
+import Skills from './components/Skills'
 
-function App() {
-  const contentRef = useRef(null);
-
-  return (
-    <ThemeProvider>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-8 px-4 transition-colors">
-        <div className="max-w-6xl mx-auto">
-          <Header />
-
-          <div className="flex justify-center mb-8 no-print">
-            <PdfButton contentRef={contentRef} />
-          </div>
-
-          <div ref={contentRef} className="space-y-8">
-            <ProfileCard photoSrc={profilePhoto} />
-
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8">
-              <Section title="Perfil Profissional" delay={0.3}>
-                <AboutMe />
-              </Section>
-
-              <Section title="Carreira Profissional" delay={0.4}>
-                <Career />
-              </Section>
-
-              <Section title="Habilidades Técnicas" delay={0.5}>
-                <Skills />
-              </Section>
-
-              <Section title="Experiências Profissionais" delay={0.6}>
-                <ExperienceList />
-              </Section>
-
-              <Section title="Projetos" delay={0.7}>
-                <ProjectList />
-              </Section>
-
-              <Section title="Resumo Profissional" delay={0.8}>
-                <Summary />
-              </Section>
-
-              <Section title="Educação" delay={0.9}>
-                <div className="space-y-3">
-                  <div className="bg-primary-50 dark:bg-primary-900/20 p-4 rounded-lg border-l-4 border-primary-600">
-                    <h4 className="font-bold text-gray-900 dark:text-white mb-2">
-                      🎓 Engenharia de Software
-                    </h4>
-                    <p className="text-gray-700 dark:text-gray-300 text-sm">
-                      Graduação em andamento com foco em desenvolvimento de sistemas e arquitetura de software
-                    </p>
-                  </div>
-                  <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-600">
-                    <h4 className="font-bold text-gray-900 dark:text-white mb-2">
-                      📊 Análise de Dados com Python
-                    </h4>
-                    <p className="text-gray-700 dark:text-gray-300 text-sm">
-                      Especialização em ciência de dados, visualização e análise estatística
-                    </p>
-                  </div>
-                  <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-600">
-                    <h4 className="font-bold text-gray-900 dark:text-white mb-2">
-                      ☕ Desenvolvimento Back-End com Java
-                    </h4>
-                    <p className="text-gray-700 dark:text-gray-300 text-sm">
-                      Especialização em desenvolvimento server-side, APIs e arquitetura back-end
-                    </p>
-                  </div>
-                </div>
-              </Section>
-
-              <Section title="Contato" delay={1.0}>
-                <div className="space-y-2">
-                  <p>
-                    <span className="font-semibold text-gray-900 dark:text-white">📧 Email:</span>{' '}
-                    <a
-                      href="mailto:blasiuskoenigiagobraian@gmail.com"
-                      className="text-primary-600 dark:text-primary-400 hover:underline"
-                    >
-                      blasiuskoenigiagobraian@gmail.com
-                    </a>
-                  </p>
-                  <p>
-                    <span className="font-semibold text-gray-900 dark:text-white">💻 GitHub:</span>{' '}
-                    <a
-                      href="https://github.com/Makizit0s"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary-600 dark:text-primary-400 hover:underline"
-                    >
-                      @Makizit0s
-                    </a>
-                  </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 italic mt-3">
-                    📍 Santa Catarina, Brasil
-                  </p>
-                </div>
-              </Section>
-            </div>
-          </div>
-
-          <Footer />
-        </div>
-      </div>
-    </ThemeProvider>
-  );
+const sectionMotion = {
+  hidden: { opacity: 0, y: 44 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: 'easeOut' },
+  },
 }
 
-export default App;
+function App() {
+  return (
+    <div className="relative min-h-screen overflow-x-clip bg-black text-white selection:bg-yellow-400/40 selection:text-black">
+      <ParticlesBackground />
+      <BackgroundMusic />
+      <Navbar />
+
+      <main className="relative z-10 mx-auto max-w-7xl px-4 pb-20 pt-28 sm:px-6 lg:px-8">
+        <motion.section
+          id="home"
+          variants={sectionMotion}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <Hero />
+        </motion.section>
+
+        <motion.section
+          id="about"
+          className="mt-20"
+          variants={sectionMotion}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+        >
+          <About />
+        </motion.section>
+
+        <motion.section
+          id="experience"
+          className="mt-20"
+          variants={sectionMotion}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <Experience />
+        </motion.section>
+
+        <motion.section
+          id="skills"
+          className="mt-20"
+          variants={sectionMotion}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <Skills />
+        </motion.section>
+
+        <motion.section
+          id="projects"
+          className="mt-20"
+          variants={sectionMotion}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+        >
+          <Projects />
+        </motion.section>
+
+        <motion.section
+          id="contact"
+          className="mt-20"
+          variants={sectionMotion}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <Contact />
+        </motion.section>
+      </main>
+    </div>
+  )
+}
+
+export default App

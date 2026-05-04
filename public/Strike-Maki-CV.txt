@@ -1,0 +1,17 @@
+Strike Maki - CV Placeholder
+
+Formacao:
+- Estudante de Engenharia de Software
+
+Foco:
+- Programacao
+- Analise de dados
+- Cloud computing
+
+Skills:
+- SQL
+- Python
+- Power BI
+- JavaScript
+- HTML/CSS
+- Oracle Cloud

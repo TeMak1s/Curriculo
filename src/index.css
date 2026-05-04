@@ -1,29 +1,86 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap');
+@import 'tailwindcss';
 
-@layer base {
-  body {
-    @apply antialiased;
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  background: #000000;
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.glass-card {
+  background: #000000;
+  border: 3px solid #ffffff;
+  border-radius: 0;
+  backdrop-filter: none;
+}
+
+.section-title {
+  color: #ffff00;
+  font-family: 'VT323', monospace;
+  font-size: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: 0.05em;
+}
+
+.undertale-bg-image {
+  background-image: url('/8c837b8054a444539b9ff998b81a233c.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: blur(2px);
+  transform: scale(1.04);
+}
+
+.undertale-vignette {
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.05) 30%,
+    rgba(0, 0, 0, 0.38) 72%,
+    rgba(0, 0, 0, 0.68) 100%
+  );
+}
+
+.typing-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 0.28rem;
+  background: #ffff00;
+  animation: blink 1s step-end infinite;
+  vertical-align: text-bottom;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.1%,
+  100% {
+    opacity: 0;
   }
 }
 
-/* Smooth transitions for theme switching */
-* {
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+.ut-nav-link:hover {
+  color: #ffff00;
 }
 
-/* Print styles for PDF generation */
-@media print {
-  body {
-    @apply bg-white text-black;
-  }
-  
-  .no-print {
-    display: none !important;
-  }
-  
-  .print-break-avoid {
-    page-break-inside: avoid;
-  }
+.ut-nav-link:hover::before {
+  content: '* ';
+  color: #ffff00;
 }
